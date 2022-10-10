@@ -1,0 +1,18 @@
+
+spring:
+  mqtt:
+    enable: true
+    url: tcp://broker.emqx.io
+    username:
+    password:
+    consumerclientid: clientid12342312212_c
+    producerclientid: clientid12342312212_p
+    #???????ms
+    timeout: 5000
+    #1.5*Keep Alive ????????????
+    keepalive: 2
+    # deviceId
+    #deviceId: your_deviceId
+    # mqtt-topic
+    producertopic: bstes
+    consumertopic: bstes
