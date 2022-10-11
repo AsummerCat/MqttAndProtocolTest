@@ -1,4 +1,3 @@
-
 spring:
   mqtt:
     enable: true
@@ -6,13 +5,15 @@ spring:
     username:
     password:
     consumerclientid: clientid12342312212_c
+    # 自定义编码消费者id
+    userconsumerclientid: clientid12342312212_d
+    # 生产者id
     producerclientid: clientid12342312212_p
-    #???????ms
+    # 自定义编码生产者id
+    userproducerclientid: clientid12342312212_g
     timeout: 5000
-    #1.5*Keep Alive ????????????
+    # 心跳时间
     keepalive: 2
-    # deviceId
-    #deviceId: your_deviceId
     # mqtt-topic
-    producertopic: bstes
+    producertopic: bstes,user
     consumertopic: bstes
