@@ -12,16 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class MqttController {
 
-    @Autowired
-    private MqttProducer mqttProducer;
+
     @Autowired
     private UserMqttProducer userMqttProducer;
-
-    @RequestMapping("/send/{topic}/{message}")
-    public String send(@PathVariable String topic, @PathVariable String message) {
-        mqttProducer.sendToMqtt(topic, message);
-        return "send message : " + message;
-    }
 
 
     @RequestMapping("/user")
