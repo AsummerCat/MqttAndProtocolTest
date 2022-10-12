@@ -1,7 +1,6 @@
 package com.linjingc.mqttandprotocol.config;
 
 import com.linjingc.mqttandprotocol.converter.UserConverter;
-import com.linjingc.mqttandprotocol.mqtt.MqttConsumer;
 import com.linjingc.mqttandprotocol.mqtt.UserMqttConsumer;
 import lombok.extern.slf4j.Slf4j;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
