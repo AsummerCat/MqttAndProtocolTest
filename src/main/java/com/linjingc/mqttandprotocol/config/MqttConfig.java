@@ -17,7 +17,6 @@ import org.springframework.integration.mqtt.core.DefaultMqttPahoClientFactory;
 import org.springframework.integration.mqtt.core.MqttPahoClientFactory;
 import org.springframework.integration.mqtt.inbound.MqttPahoMessageDrivenChannelAdapter;
 import org.springframework.integration.mqtt.outbound.MqttPahoMessageHandler;
-import org.springframework.integration.mqtt.support.DefaultPahoMessageConverter;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.MessageHandler;
 
@@ -36,8 +35,6 @@ public class MqttConfig {
     @Value("${spring.mqtt.url}")
     private String hostUrl;
 
-    @Value("${spring.mqtt.producerclientid}")
-    private String producerClientId;
     @Value("${spring.mqtt.userproducerclientid}")
     private String userProducerClientId;
 
@@ -45,13 +42,8 @@ public class MqttConfig {
     private String producerTopic;
 
     //生产者和消费者是单独连接服务器会使用到一个clientid（客户端id），如果是同一个clientid的话会出现Lost connection: 已断开连接; retrying...
-    @Value("${spring.mqtt.consumerclientid}")
-    private String consumerClientId;
     @Value("${spring.mqtt.userconsumerclientid}")
     private String userConsumerclientid;
-
-    @Value("${spring.mqtt.consumertopic}")
-    private String[] consumerTopic;
 
     @Value("${spring.mqtt.timeout}")
     private int timeout;   //连接超时

@@ -1,6 +1,6 @@
 package com.linjingc.mqttandprotocol.mqtt;
 
-import com.linjingc.mqttandprotocol.converter.User;
+import com.linjingc.mqttandprotocol.converter.UserProto;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.integration.annotation.MessagingGateway;
 import org.springframework.integration.mqtt.support.MqttHeaders;
@@ -17,9 +17,9 @@ import org.springframework.stereotype.Component;
 @ConditionalOnProperty(value = "spring.mqtt.enable", havingValue = "true")
 public interface UserMqttProducer {
     //自定义编码数据
-    void sendToMqtt(User user);
+    void sendToMqtt(UserProto.User user);
 
-    void sendToMqtt(@Header(MqttHeaders.TOPIC) String topic, User user);
+    void sendToMqtt(@Header(MqttHeaders.TOPIC) String topic, UserProto.User user);
 
-    void sendToMqtt(@Header(MqttHeaders.TOPIC) String topic, @Header(MqttHeaders.QOS) Integer Qos, User user);
+    void sendToMqtt(@Header(MqttHeaders.TOPIC) String topic, @Header(MqttHeaders.QOS) Integer Qos, UserProto.User user);
 }

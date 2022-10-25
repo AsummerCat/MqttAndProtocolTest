@@ -1,11 +1,10 @@
 package com.linjingc.mqttandprotocol.controller;
 
-import com.alibaba.fastjson.JSON;
-import com.linjingc.mqttandprotocol.mqtt.MqttProducer;
-import com.linjingc.mqttandprotocol.converter.User;
+import com.google.protobuf.InvalidProtocolBufferException;
+import com.google.protobuf.util.JsonFormat;
+import com.linjingc.mqttandprotocol.converter.UserProto;
 import com.linjingc.mqttandprotocol.mqtt.UserMqttProducer;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,12 +17,13 @@ public class MqttController {
 
 
     @RequestMapping("/user")
-    public String send1() {
-        User user = new User();
-        user.setUsername("小明");
-        user.setPassword("密码");
-        userMqttProducer.sendToMqtt("user", user);
-        return "send message : " + JSON.toJSONString(user);
+    public String send1() throws InvalidProtocolBufferException {
+        UserProto.User.Builder user = UserProto.User.newBuilder();
+        user.setId(100).setCode("10086").setName("小明").build();
+        //序列化
+        UserProto.User build = user.build();
+        userMqttProducer.sendToMqtt("user", build);
+        return "send message : " + JsonFormat.printer().print(build);
     }
 
 

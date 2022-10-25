@@ -1,7 +1,8 @@
 package com.linjingc.mqttandprotocol.mqtt;
 
-import com.alibaba.fastjson.JSON;
-import com.linjingc.mqttandprotocol.converter.User;
+import com.google.protobuf.InvalidProtocolBufferException;
+import com.google.protobuf.util.JsonFormat;
+import com.linjingc.mqttandprotocol.converter.UserProto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.integration.mqtt.support.MqttHeaders;
@@ -20,8 +21,12 @@ public class UserMqttConsumer implements MessageHandler {
 
     @Override
     public void handleMessage(Message<?> message) throws MessagingException {
-        String topic = String.valueOf(message.getHeaders().get(MqttHeaders.RECEIVED_TOPIC));
-        User user = (User) message.getPayload();
-        log.info("User接收到 mqtt消息，主题:{} 消息:{}", topic, JSON.toJSONString(user));
+        String topic = String.valueOf(message.getHeaders().get(MqttHeaders.TOPIC));
+        UserProto.User user = (UserProto.User) message.getPayload();
+        try {
+            log.info("User接收到 mqtt消息，主题:{} 消息:{}", topic, JsonFormat.printer().print(user));
+        } catch (InvalidProtocolBufferException e) {
+            e.printStackTrace();
+        }
     }
 }
