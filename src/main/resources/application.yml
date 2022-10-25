@@ -7,10 +7,6 @@ spring:
     consumerclientid: clientid12342312212_c
     # 自定义编码消费者id
     userconsumerclientid: clientid12342312212_d
-    # 生产者id
-    producerclientid: clientid12342312212_p
-    # 自定义编码生产者id
-    userproducerclientid: clientid12342312212_g
     timeout: 5000
     # 心跳时间
     keepalive: 2
